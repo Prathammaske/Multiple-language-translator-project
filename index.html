@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Translator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>World Translator!!</h1>
+    </header>
+    <div class="container">
+        <form action="/" method="post">
+            <label for="target_language">Select Target Language:</label>
+            <select name="target_language" id="target_language" required>
+                {% for code, language in languages.items() %}
+                    <option value="{{ code }}">{{ language }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Translate</button>
+        </form>
+        {% if error %}
+            <div class="error">
+                <p>{{ error }}</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
