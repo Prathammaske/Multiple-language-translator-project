@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 import speech_recognition as sr
-from deep_translator import GoogleTranslator
+from deep_translator import GoogleTanslator
 from gtts import gTTS
 import os
 
@@ -40,14 +40,12 @@ def translate_text(text, target_language):
     """Translate text to the target language."""
     if target_language == 'zh':
         target_language = 'zh-CN'  # default to Simplified Chinese
-    translated = GoogleTranslator(source='auto', target=target_language).translate(text)
     return translated
 
 def text_to_speech(text, language):
     """Convert text to speech in the given language."""
     tts = gTTS(text=text, lang=language)
-    save_path = os.path.join("static", "output.mp3")
-    tts.save(save_path)
+    h)
     os.system("start " + save_path)  # For Windows, use "start"; for macOS, use "open"; for Linux, use "xdg-open".
 
 @app.route('/', methods=['GET', 'POST'])
@@ -63,11 +61,11 @@ def index():
             transcription = response['transcription']
             if not transcription:
                 error = "No speech detected. Please try again."
-                return render_template('index.html', languages=SUPPORTED_GTTs_LANGUAGES, error=error)
+                return render_template('index.html', languages=SUPTED_GTTs_LANGUAGES, error=error)
             
             translated_text = translate_text(transcription, target_language)
             text_to_speech(translated_text, target_language)
-            return render_template('result.html', original=transcription, translated=translated_text)
+            return render_template('result.html', original=trcription, translated=translated_text)
         else:
             error = response["error"]
             return render_template('index.html', languages=SUPPORTED_GTTs_LANGUAGES, error=error)
