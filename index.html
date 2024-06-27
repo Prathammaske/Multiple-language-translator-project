@@ -11,11 +11,7 @@
         <h1>World Translator!!</h1>
     </header>
     <div class="container">
-        <form action="/" method="post">
-            <label for="target_language">Select Target Language:</label>
-            <select name="target_language" id="target_language" required>
-                {% for code, language in languages.items() %}
-                    <option value="{{ code }}">{{ language }}</option>
+  
                 {% endfor %}
             </select>
             <button type="submit">Translate</button>
